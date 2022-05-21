@@ -46,7 +46,7 @@ int main() {
   test_error(err, EINVARG, 10);
 
   print(vec, &err);
-  tesr_error(err, EINVARG, 11);
+  test_error(err, EINVARG, 11);
 
   int d = find(vec, &err, 5);
   test_error(err, EINVARG, 12);
@@ -57,6 +57,12 @@ int main() {
   int f = empty(vec, &err);
   test_error(err, EINVARG, 14);
 
+  free(a);
+  free(b);
+  free(c);
+  free(d);
+  free(e);
+  free(f);
 
 }
 
