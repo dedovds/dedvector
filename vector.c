@@ -58,3 +58,15 @@ void extend(Vector* v, VECTOR_ERR* err) {
   v->data = ptr;
   success(err);
 }
+
+int size(Vector* v, VECTOR_ERR* err) {
+  check_null_v_return_zero(v, err);
+  success(err);
+  return v->size;
+}
+
+int capacity(Vector* v, VECTOR_ERR* err) {
+  check_null_v_return_zero(v, err);
+  success(err);
+  return v->capacity;
+}
