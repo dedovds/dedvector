@@ -103,3 +103,23 @@ void pop_back(Vector* v, VECTOR_ERR* err) {
   --v->size;
   success(err);
 }
+
+int at(Vector* v, VECTOR_ERR* err, int index) {
+  check_null_v_return_zero(v, err);
+	if (index >= 0 && v->size <= index) {
+    if (err != NULL)
+    	*err = EINDEX;
+    return 0;
+  }
+  success(err);
+  return v->data[index];
+}
+
+void print(Vector* v, VECTOR_ERR* err) {
+  check_null_v(v, err);
+  for (int i = 0; i < v->size; ++i) {
+    printf("%d ", v->data[i]);
+  }
+  printf("\n");
+  success(err);
+}
