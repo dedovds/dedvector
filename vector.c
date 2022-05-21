@@ -2,6 +2,35 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define check_null_v(v, err) \
+do { \
+  if (v == NULL) { \
+    fprintf(stderr, "Invalig argument: stack\n"); \
+		if (err != NULL) \
+			*err = EINVARG; \
+  	return; \
+  } \
+} while (0)
+
+
+#define check_null_v_return_zero(v, err) \
+do { \
+  if (v == NULL) { \
+    fprintf(stderr, "Invalig argument: stack\n"); \
+		if (err != NULL) \
+			*err = EINVARG; \
+  	return -1; \
+  } \
+} while (0)
+
+
+#define success(err) \
+do { \
+  if (err != NULL) \
+			*err = ESUCCESS; \
+} while (0)
+
+
 Vector* init_v(VECTOR_ERR* err, int size) {
     if (size <= 0) {
         fprintf(stderr, "Invalig argument: size\n");
