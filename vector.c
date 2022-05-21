@@ -2,4 +2,38 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+Vector* init_v(VECTOR_ERR* err, int size) {
+    if (size <= 0) {
+        fprintf(stderr, "Invalig argument: size\n");
+        if (err != NULL)
+            *err = EINVARG;
+        return NULL;
+    }
 
+    Vector *v = (Vector *) malloc(sizeof(Vector));
+    if (v == NULL) {
+        fprintf(stderr, "Not enough memory\n");
+        if (err != NULL)
+            *err = EMALLOC;
+        return NULL;
+    }
+    v->capacity = 1;
+    while (v->capacity <= size) {
+        v->capacity *= 2;
+    }
+
+    v->data = (int *) malloc(v->capacity * sizeof(int));
+    if (v->data == NULL) {
+        fprintf(stderr, "Not enough memory\n");
+        if (err != NULL)
+            *err = EMALLOC;
+        return NULL;
+    }
+
+    for (int i = 0; i < size; ++i) {
+        v->data[i] = 0;
+    }
+    v->size = size;
+    success(err);
+    return v;
+}
