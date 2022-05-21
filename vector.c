@@ -134,3 +134,19 @@ int find(Vector* v, VECTOR_ERR* err, int elem) {
   }
   return -1;
 }
+
+int back(Vector* v, VECTOR_ERR* err) {
+  check_null_v_return_zero(v, err);
+  if (v->size == 0) {
+    if (err != NULL)
+    	*err = EEMPTY;
+    return 0;
+  }
+  success(err);
+  return v->data[v->size-1];
+}
+
+int empty(Vector* v, VECTOR_ERR* err) {
+  check_null_v_return_zero(v, err);
+  return v->size == 0;
+}
