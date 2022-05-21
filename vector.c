@@ -123,3 +123,14 @@ void print(Vector* v, VECTOR_ERR* err) {
   printf("\n");
   success(err);
 }
+
+int find(Vector* v, VECTOR_ERR* err, int elem) {
+  check_null_v(v, err);
+  success(err);
+  for	(int i = 0; i < v->size; ++i) {
+    if (v->data[i] == elem) {
+      return i;
+    }
+  }
+  return -1;
+}
