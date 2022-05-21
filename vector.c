@@ -70,3 +70,36 @@ int capacity(Vector* v, VECTOR_ERR* err) {
   success(err);
   return v->capacity;
 }
+
+void clear(Vector* v, VECTOR_ERR* err) {
+  check_null_v(v, err);
+  v->size = 0;
+  v->capacity = 0;
+  success(err);
+}
+
+void push_back(Vector* v, VECTOR_ERR* err, int element) {
+  check_null_v(v, err);
+  if (v->capacity <= v->size + 1) {
+    VECTOR_ERR own_err;
+		extend(v, &own_err);
+    if (own_err == EMALLOC)
+        if (err != NULL)
+            *err = EMALLOC;
+        return;
+  } 
+  v->data[v->size] = element;
+  ++v->size;
+  success(err);
+}
+
+void pop_back(Vector* v, VECTOR_ERR* err) {
+  check_null_v(v, err);
+  if (v->size == 0) {
+    if (err != NULL)
+    	*err = EEMPTY;
+    return;
+  }
+  --v->size;
+  success(err);
+}
