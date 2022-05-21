@@ -154,7 +154,7 @@ void print(Vector* v, VECTOR_ERR* err) {
 }
 
 int find(Vector* v, VECTOR_ERR* err, int elem) {
-  check_null_v(v, err);
+  check_null_v_return_zero(v, err);
   success(err);
   for	(int i = 0; i < v->size; ++i) {
     if (v->data[i] == elem) {

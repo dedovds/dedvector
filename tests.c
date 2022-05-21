@@ -1,4 +1,4 @@
-#include "ded_vector.h"
+#include "vector.h"
 #include <stdio.h>
 
 #define test_error(err, expected, number) \
@@ -11,13 +11,13 @@ do { \
 } while (0)
 
 int main() {
-  vector *vec = NULL;
+  Vector *vec = NULL;
   VECTOR_ERR err;
   
-  vec = init_v(err, -1);
+  vec = init_v(&err, -1);
   test_error(err, EINVARG, 1); // EINVARG - ожидаемое значение ошибки, 1 - номер теста
   
-  vec = init_v(err, 25);
+  vec = init_v(&err, 25);
   test_error(err, ESUCCESS, 2);
 }
 

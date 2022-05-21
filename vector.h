@@ -1,5 +1,5 @@
-#ifndef ded_vector
-#define ded_vector
+#ifndef _ded_vector_
+#define _ded_vector_
 
 typedef struct Vector {
     int size;
@@ -33,9 +33,9 @@ int at(Vector* v, VECTOR_ERR* err, int index);
 
 void pop_back(Vector* v, VECTOR_ERR* err);
 
-void print(Vector* v);
+void print(Vector* v, VECTOR_ERR* err);
 
-void find(Vector* v, VECTOR_ERR* err, int elem);
+int find(Vector* v, VECTOR_ERR* err, int elem);
 
 int empty(Vector* v, VECTOR_ERR* err);
 
