@@ -37,3 +37,24 @@ Vector* init_v(VECTOR_ERR* err, int size) {
     success(err);
     return v;
 }
+
+void remove_v(Vector* v, VECTOR_ERR* err) {
+  check_null_v(v, err);
+	if (v->data != NULL)
+		free(v->data);
+	free(v);
+	success(err);
+}
+
+void extend(Vector* v, VECTOR_ERR* err) {
+  check_null_v(v, err);
+  v->capacity *= 2;
+  void* ptr = realloc(v->data, v->capacity * sizeof(int));
+  if (ptr == NULL) {
+    if (err != NULL)
+			*err = EMALLOC;
+    return;
+  }
+  v->data = ptr;
+  success(err);
+}
